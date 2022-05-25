@@ -1,0 +1,41 @@
+#!/bin/bash
+mac=90:7F:61:8F:32:87
+echo Verificando que este pareado
+echo "paired-devices" | bluetoothctl --agent=NoInputNoOutput  | grep $mac > /dev/null
+if [ $? == 1 ]; then
+        echo Reiniciando Bluetooth
+        sudo systemctl stop bluetooth.service
+        sudo systemctl start bluetooth.service
+        echo "
+Escriba lo siguiente
+bluetoothctl
+power on 
+agent on 
+default-agent
+scan on  
+(Coloque su dispositivo en localizable)
+trust $mac
+pair $mac
+paired-devices
+scan off
+exit" 
+        exit 22
+fi                                                                                                                                                                                           
+                                                                                                                                                                                             
+                                                                                                                                                                                             
+                                                                                                                                                                                             
+while true                                                                                                                                                                                   
+        do                                                                                                                                                                                   
+                echo "info $mac" | bluetoothctl --agent=NoInputNoOutput | grep "Connected: yes"                                                                                              
+                if [ $? == 0 ]; then
+                        sleep 10
+                        echo "connect $mac" | bluetoothctl --agent=NoInputNoOutput |grep Attempting
+                else
+                        echo No conectado...Conectando y esperando
+                        echo "connect $mac" | bluetoothctl --agent=NoInputNoOutput |grep Attempting
+                        sleep 6
+                fi
+                echo Esperando igual
+                sleep 10
+        done
+exit
