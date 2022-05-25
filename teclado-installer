@@ -13,7 +13,8 @@ Group=root
 WantedBy=multi-user.target" > teclado.service
 chmod +x teclado.service
 cd /usr/local/bin/
-wget ruta
+wget https://raw.githubusercontent.com/catupeloco/bluetooth-connect-linux/main/teclado
 chmod +x teclado
-systemctl enable teclado.service
-systemctl start teclado.service
+teclado
+systemctl enable teclado.service > /dev/null 2>&1
+systemctl start teclado.service > /dev/null 2>&1
