@@ -15,6 +15,6 @@ chmod +x teclado.service
 cd /usr/local/bin/
 wget https://raw.githubusercontent.com/catupeloco/bluetooth-connect-linux/main/teclado
 chmod +x teclado
-teclado
 systemctl enable teclado.service > /dev/null 2>&1
 systemctl start teclado.service > /dev/null 2>&1
+teclado
